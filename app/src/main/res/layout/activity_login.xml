@@ -11,11 +11,11 @@
     tools:context=".authentication.Login">
 
 
-    <ImageView
+    <!-- <ImageView
         android:layout_marginTop="@dimen/margin_top_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/logosinfondo" />
+        android:src="@drawable/logosinfondo" /> -->
 
     <TextView
         android:layout_marginTop="@dimen/margin_top_texto_login"

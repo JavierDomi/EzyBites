@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.dam.ezybites"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.dam.ezybites"
