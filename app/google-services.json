@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "792521794067",
+    "project_id": "ezybites-6b942",
+    "storage_bucket": "ezybites-6b942.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792521794067:android:7d686ee963a9ea2de795e6",
+        "android_client_info": {
+          "package_name": "com.dam.ezybites"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGGTGiaI8rsTArO39GnWkdbr-mBfTuceU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

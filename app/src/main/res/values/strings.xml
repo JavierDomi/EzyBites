@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">EzyBites</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="sign_in">Sus datos:</string>
+    <string name="email">Dirección de correo</string>
+    <string name="password">Contraseña</string>
+    <string name="dont_have_account">¿No tienes una cuenta?</string>
+    <string name="create_account">Regístrate</string>
+    <string name="enter_email">Introduzca una dirección de correo</string>
+    <string name="wrong_uname_password">Usuario o contraseña incorrectos</string>
+</resources>
