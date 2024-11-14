@@ -67,13 +67,11 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progBar.setVisibility(View.GONE);
                         if(task.isSuccessful()){
-                            //FirebaseUser currentUser = mAuth.getCurrentUser();
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(i);
                             finish();
                         } else {
                             Toast.makeText(Login.this, getString(R.string.wrong_uname_password), Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
