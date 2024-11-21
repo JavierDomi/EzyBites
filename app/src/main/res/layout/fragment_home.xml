@@ -48,20 +48,10 @@ y a lo mejor tb un subrayado-->
         android:layout_height="match_parent"
         android:background="@color/teal_200"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="300px">
-            <View
-                android:layout_width="1000px"
-                android:layout_height="200px"
-                android:background="@color/purple_500"
-                android:layout_marginRight="40px"/>
-            <View
-                android:layout_width="1000px"
-                android:layout_height="200px"
-                android:background="@color/black"
-                android:layout_marginRight="40px"/>
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_amigos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </HorizontalScrollView>
 </LinearLayout>
 
