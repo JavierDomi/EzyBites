@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black">
+
+        <ImageView android:id="@+id/toolbar_pfp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/pfp_sample"
+            android:background="@drawable/circle_bg"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"/>
+
+        <TextView android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:fontFamily="@font/artifakt_element_bold"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"/>
+
+        <ImageView android:id="@+id/toolbar_menu"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/dot_menu"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+</RelativeLayout>
