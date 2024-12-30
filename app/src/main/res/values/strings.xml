@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_descubrir">Descubrir</string>
     <string name="login">Iniciar Sesión</string>
     <string name="sign_in">Sus datos:</string>
     <string name="email">Dirección de correo</string>
