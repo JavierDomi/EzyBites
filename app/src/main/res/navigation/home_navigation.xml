@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home_para_ti">
+
+    <fragment
+        android:id="@+id/navigation_home_para_ti"
+        android:name="com.dam.ezybites.ui.home.innerFragments.home_para_ti"
+        tools:layout="@layout/fragment_home_para_ti" />
+
+    <fragment
+        android:id="@+id/navigation_home_amigos"
+        android:name="com.dam.ezybites.ui.home.innerFragments.home_amigos"
+        tools:layout="@layout/fragment_home_amigos" />
+
+    <fragment
+        android:id="@+id/navigation_home_comunidades"
+        android:name="com.dam.ezybites.ui.home.innerFragments.home_comunidades"
+        tools:layout="@layout/fragment_home_comunidades" />
+
+</navigation>
