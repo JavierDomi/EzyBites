@@ -11,12 +11,22 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.dam.ezybites.ui.dashboard.DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_search"
+        android:name="com.dam.ezybites.ui.search.SearchFragment"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.dam.ezybites.ui.notifications.NotificationsFragment"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_discover"
+        android:name="com.dam.ezybites.ui.discover.DiscoverFragment"
+        tools:layout="@layout/fragment_discover" />
+
+    <fragment
+        android:id="@+id/navigation_community"
+        android:name="com.dam.ezybites.ui.community.CommunityFragment"
+        tools:layout="@layout/fragment_community" />
+
+    <fragment
+        android:id="@+id/navigation_recipes"
+        android:name="com.dam.ezybites.ui.recipes.RecipesFragment"
+        tools:layout="@layout/fragment_recipes" />
 </navigation>

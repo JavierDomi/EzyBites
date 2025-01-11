@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         //TOOLBAR
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
-
 }
