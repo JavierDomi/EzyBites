@@ -55,6 +55,7 @@ public class HomeFragment extends Fragment {
                 .replace(R.id.fragmentHomeInner, home_para_ti.class, null)
                 .setReorderingAllowed(true)
                 .commit();
+        currentIndex = 0;
 
         Map<Integer, Integer> buttonIndices = new HashMap<>();
         buttonIndices.put(R.id.homeParaTi, 0);
