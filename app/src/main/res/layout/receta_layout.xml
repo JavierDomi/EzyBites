@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--habria que cambiar la actionbar cuando entras aqui y que ahi salgan las
+    opciones de guardar, compartir fuera de la app y enviar por comunidades
+    y tambien hay que cambiar que cuando estes en esta view, la barra de arriba la de
+    la bateria y la hora cambie al mismo negro de la actionbar con la opcacidad baja-->
+
+    <ImageView
+        android:id="@+id/foto_receta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sample_receta2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+<!--        el linear tiene que tener la height del root pero creo que solo se puede hacer dsd el java-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:background="@drawable/fade_black_transparent"
+            android:paddingTop="64dp"
+            android:paddingBottom="8dp"
+            android:paddingHorizontal="12dp">
+
+            <LinearLayout android:id="@+id/resumen_receta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="fill_horizontal">
+
+                <TextView android:id="@+id/duracion_receta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:textSize="18sp"
+                    android:paddingRight="16dp"
+                    android:text="30 min"/>
+
+                <TextView android:id="@+id/tipo_receta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:textSize="18sp"
+                    android:paddingHorizontal="16dp"
+                    android:text="Vegano"/>
+
+                <TextView android:id="@+id/procedencia_receta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:textSize="18sp"
+                    android:paddingHorizontal="16dp"
+                    android:text="Oriental"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/titulo_receta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ejemplo título"
+                android:textSize="42sp"
+                android:fontFamily="@font/artifakt_element_bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By arguiñano"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:layout_gravity="center"/>
+
+                <ImageView android:id="@+id/foto_de_perfil_receta"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="12dp"
+                    android:src="@drawable/arguinano_sample"
+                    android:background="@drawable/circle_bg"
+                    android:clipToOutline="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
