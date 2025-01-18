@@ -11,11 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.dam.ezybites.R;
+import com.dam.ezybites.pojos.Amigo;
 
-public class AdapterAmigosHome extends RecyclerView.Adapter<AdapterAmigosHome.ItemVH> {
+import java.util.List;
 
-    Context context;
+public class AdapterAmigosParaTi extends RecyclerView.Adapter<AdapterAmigosParaTi.ItemVH> {
+
+    private Context context;
+    private List<Amigo> amigosList;
+
+    public AdapterAmigosParaTi(Context context, List<Amigo> amigosList) {
+        this.context = context;
+        this.amigosList = amigosList;
+    }
 
     @NonNull
     @Override
@@ -26,20 +36,19 @@ public class AdapterAmigosHome extends RecyclerView.Adapter<AdapterAmigosHome.It
 
     @Override
     public void onBindViewHolder(@NonNull ItemVH holder, int position) {
+        Amigo amigo = amigosList.get(position);
 
-        //rellenar esto lo de dentro de los ()
-        holder.foto.setImageDrawable();
-        holder.texto.setText();
-        holder.pfp.setImageDrawable();
-        holder.type.setImageDrawable();
+        Glide.with(context).load(amigo.getFotoUrl()).into(holder.foto);
+        holder.texto.setText(amigo.getNombre());
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return amigosList.size();
     }
 
-    public static class ItemVH extends RecyclerView.ViewHolder{
+    public static class ItemVH extends RecyclerView.ViewHolder {
 
         CardView tarjetaAmigos;
         ImageView foto, type, pfp;
@@ -48,13 +57,11 @@ public class AdapterAmigosHome extends RecyclerView.Adapter<AdapterAmigosHome.It
         public ItemVH(@NonNull View itemView) {
             super(itemView);
 
+            tarjetaAmigos = itemView.findViewById(R.id.tajeta_amigos_id);
             foto = itemView.findViewById(R.id.tarjeta_amigos_foto);
             type = itemView.findViewById(R.id.tarjeta_amigos_type);
             pfp = itemView.findViewById(R.id.tarjeta_amigos_pfp);
             texto = itemView.findViewById(R.id.tarjeta_amigos_text);
-
         }
-
     }
-
 }

@@ -13,11 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView android:id="@+id/tarjeta_amigos_foto"
+        <ImageView
+            android:id="@+id/tarjeta_amigos_foto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="Foto de la comida"
             android:scaleType="centerCrop"
-            android:contentDescription="Foto de la comida"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/tarjeta_amigos_type"

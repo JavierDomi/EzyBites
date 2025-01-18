@@ -4,15 +4,19 @@
     android:layout_height="wrap_content"
     android:background="@color/black">
 
-        <ImageView android:id="@+id/toolbar_pfp"
+        <ImageView
+            android:id="@+id/toolbar_pfp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/pfp_sample"
-            android:background="@drawable/circle_bg"
-            android:scaleType="centerCrop"
-            android:clipToOutline="true"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/circle_bg"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pfp_sample" />
 
         <TextView android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"

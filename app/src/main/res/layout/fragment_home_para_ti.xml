@@ -44,11 +44,6 @@
                 android:orientation="horizontal"
                 android:scrollbars="horizontal"
                 android:background="@color/white"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="999999dp"/>
-
         </LinearLayout>
 
     </ScrollView>
