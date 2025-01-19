@@ -50,6 +50,11 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
+    //JSON Cleaner
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
+
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
