@@ -1,11 +1,11 @@
 package com.dam.ezybites.pojos;
 
-public class Amigo {
+public class User {
     private String id;
     private String nombre;
     private String fotoUrl;
 
-    public Amigo(String id, String nombre, String fotoUrl) {
+    public User(String id, String nombre, String fotoUrl) {
         this.id = id;
         this.nombre = nombre;
         this.fotoUrl = fotoUrl;

@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.ezybites.R;
 import com.dam.ezybites.adapters.AdapterAmigosParaTi;
-import com.dam.ezybites.pojos.Amigo;
+import com.dam.ezybites.pojos.RecetaConAutor;
+import com.dam.ezybites.pojos.Receta;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +31,12 @@ public class home_para_ti extends Fragment {
 
     private RecyclerView recyclerView;
     private AdapterAmigosParaTi adapter;
-    private List<Amigo> amigosList;
+    private List<RecetaConAutor> recetasList;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
     public home_para_ti() {
-        // Constructor vacío requerido
+        // Required empty public constructor
     }
 
     public static home_para_ti newInstance() {
@@ -46,8 +47,7 @@ public class home_para_ti extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase
-                .getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -58,15 +58,15 @@ public class home_para_ti extends Fragment {
         recyclerView = view.findViewById(R.id.rv_amigos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        amigosList = new ArrayList<>();
-        adapter = new AdapterAmigosParaTi(getContext(), amigosList);
+        recetasList = new ArrayList<>();
+        adapter = new AdapterAmigosParaTi(getContext(), recetasList);
         recyclerView.setAdapter(adapter);
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             Log.d("Firebase", "Usuario autenticado: " + currentUser.getEmail());
             Log.d("Firebase", "Usuario autenticado: " + currentUser.getUid());
-            cargarAmigosDelUsuario(currentUser.getUid());
+            cargarRecetasAmigos(currentUser.getUid());
         } else {
             Log.e("Firebase", "No hay usuario autenticado");
         }
@@ -74,7 +74,7 @@ public class home_para_ti extends Fragment {
         return view;
     }
 
-    private void cargarAmigosDelUsuario(String userId) {
+    private void cargarRecetasAmigos(String userId) {
         DatabaseReference amigosRef = mDatabase.child("Usuarios").child(userId).child("amigos");
 
         amigosRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -85,11 +85,10 @@ public class home_para_ti extends Fragment {
                     return;
                 }
 
-                amigosList.clear();
                 for (DataSnapshot amigoSnapshot : dataSnapshot.getChildren()) {
                     String amigoId = amigoSnapshot.getValue(String.class);
                     if (amigoId != null) {
-                        cargarDetallesAmigo(amigoId);
+                        cargarRecetasPublicadasAmigo(amigoId);
                     } else {
                         Log.e("Firebase", "ID de amigo nulo");
                     }
@@ -99,35 +98,101 @@ public class home_para_ti extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("Firebase", "Error al cargar amigos: " + databaseError.getMessage());
-                Toast.makeText(getContext(), "Error al cargar amigos. Por favor, intenta de nuevo.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error al cargar recetas de amigos. Por favor, intenta de nuevo.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void cargarDetallesAmigo(String amigoId) {
-        mDatabase.child("Usuarios").child(amigoId).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void cargarRecetasPublicadasAmigo(String amigoId) {
+        DatabaseReference recetasPublicadasRef = mDatabase.child("Usuarios").child(amigoId).child("recetas_publicadas");
+
+        recetasPublicadasRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String username = dataSnapshot.child("username").getValue(String.class);
-                    String urlFotoPerfil = dataSnapshot.child("url_foto_perfil").getValue(String.class);
-
-                    if (username != null && urlFotoPerfil != null) {
-                        Amigo amigo = new Amigo(amigoId, username, urlFotoPerfil);
-                        amigosList.add(amigo);
-                        adapter.notifyDataSetChanged();
-                    } else {
-                        Log.e("Firebase", "Datos de amigo incompletos para ID: " + amigoId);
+                for (DataSnapshot recetaSnapshot : dataSnapshot.getChildren()) {
+                    String recetaId = recetaSnapshot.getValue(String.class);
+                    if (recetaId != null) {
+                        cargarDetallesReceta(recetaId, amigoId);
                     }
-                } else {
-                    Log.e("Firebase", "No se encontraron datos para el amigo con ID: " + amigoId);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("Firebase", "Error al cargar detalles del amigo: " + databaseError.getMessage());
+                Log.e("Firebase", "Error al cargar recetas publicadas: " + databaseError.getMessage());
             }
         });
     }
+
+    private void cargarDetallesReceta(String recetaId, String autorId) {
+        DatabaseReference recetaRef = mDatabase.child("Recetas").child(recetaId);
+        DatabaseReference autorRef = mDatabase.child("Usuarios").child(autorId);
+
+        recetaRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot recetaSnapshot) {
+                if (recetaSnapshot.exists()) {
+                    Receta receta = recetaSnapshot.getValue(Receta.class);
+                    if (receta != null) {
+                        autorRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot autorSnapshot) {
+                                String urlFotoPerfilAutor = autorSnapshot.child("url_foto_perfil").getValue(String.class);
+                                String username = autorSnapshot.child("username").getValue(String.class);
+
+                                if (urlFotoPerfilAutor != null && username != null) {
+                                    RecetaConAutor recetaConAutor = new RecetaConAutor(receta, urlFotoPerfilAutor, username);
+                                    recetasList.add(recetaConAutor);
+                                    adapter.notifyDataSetChanged();
+                                } else {
+                                    Log.e("Firebase", "Datos de autor incompletos para ID: " + autorId);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.e("Firebase", "Error al cargar datos del autor: " + databaseError.getMessage());
+                            }
+                        });
+                    } else {
+                        Log.e("Firebase", "Datos de receta incompletos para ID: " + recetaId);
+                    }
+                } else {
+                    Log.e("Firebase", "No se encontraron datos para la receta con ID: " + recetaId);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("Firebase", "Error al cargar detalles de la receta: " + databaseError.getMessage());
+            }
+        });
+    }
+
+
+    private void cargarFotoPerfilAutor(Receta receta, String autorId) {
+        DatabaseReference autorRef = mDatabase.child("Usuarios").child(autorId);
+
+        autorRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String urlFotoPerfil = dataSnapshot.child("url_foto_perfil").getValue(String.class);
+                String username = dataSnapshot.child("username").getValue(String.class);
+
+                if (urlFotoPerfil != null && username != null) {
+                    RecetaConAutor recetaConAutor = new RecetaConAutor(receta, urlFotoPerfil, username);
+                    recetasList.add(recetaConAutor);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Log.e("Firebase", "Datos de autor incompletos para ID: " + autorId);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("Firebase", "Error al cargar datos del autor: " + databaseError.getMessage());
+            }
+        });
+    }
+
 }
