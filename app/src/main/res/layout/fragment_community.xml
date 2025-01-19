@@ -3,10 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.community.CommunityFragment"
     android:background="@color/black"
+    android:paddingTop="36dp"
     android:paddingHorizontal="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false">
 
 
     <TextView
@@ -20,13 +23,174 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:clipChildren="false">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Ramen vegano"/>
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Vegaffinity"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:clipChildren="false">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="120dp"
+                android:src="@drawable/reto_activo"
+                android:layout_gravity="center"
+                android:translationX="18dp"
+                android:translationY="4dp"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="0dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:cardElevation="20dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/sample_receta3"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="3dp"
+                app:cardElevation="19dp"
+                app:cardBackgroundColor="@color/black"
+                android:alpha="0.6"/>
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="30dp"
+                android:scaleX="0.92"
+                android:scaleY="0.92"
+                app:cardElevation="18dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/sample_receta2"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="31dp"
+                app:cardElevation="17dp"
+                app:cardBackgroundColor="@color/black"
+                android:alpha="0.5"/>
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="60dp"
+                android:scaleX="0.84"
+                android:scaleY="0.84"
+                app:cardElevation="16dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/sample_receta"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="56dp"
+                app:cardElevation="15dp"
+                app:cardBackgroundColor="@color/black"
+                android:alpha="0.4"/>
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="90dp"
+                android:scaleX="0.76"
+                android:scaleY="0.76"
+                app:cardElevation="2dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/sample_receta4"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView android:id="@+id/reto_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5$ to 2 MEALS"
+                android:textSize="18sp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/svg_crockpot_lit2"
+                android:layout_below="@id/reto_text"
+                android:layout_alignParentLeft="true"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/svg_chat"
+                android:layout_below="@id/reto_text"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="56dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Recetas by Jorge Tesch"/>
 
         <View
             android:layout_width="match_parent"
@@ -36,16 +200,125 @@
             android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
-    
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        
-        <androidx.cardview.widget.CardView
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background=""/>
-        
-    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="0dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:cardElevation="20dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/sample_tesch2"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lol"
+                style="@style/cardExt"
+                android:layout_marginLeft="3dp"
+                app:cardElevation="19dp"
+                app:cardBackgroundColor="@color/black"
+                android:alpha="0.6"/>
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="30dp"
+                android:scaleX="0.92"
+                android:scaleY="0.92"
+                app:cardElevation="18dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/pizza_tesch"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="31dp"
+                app:cardElevation="17dp"
+                app:cardBackgroundColor="@color/black"
+                android:alpha="0.5"/>
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="60dp"
+                android:scaleX="0.84"
+                android:scaleY="0.84"
+                app:cardElevation="16dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/sample_tesch3"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="56dp"
+                app:cardElevation="15dp"
+                app:cardBackgroundColor="@color/black"
+                android:alpha="0.4"/>
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardExt"
+                android:layout_marginLeft="90dp"
+                android:scaleX="0.76"
+                android:scaleY="0.76"
+                app:cardElevation="2dp">
+                <androidx.cardview.widget.CardView
+                    style="@style/cardInt">
+                    <ImageView
+                        style="@style/cardImg"
+                        android:src="@drawable/sample_tesch"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="11dp">
+
+            <TextView android:id="@+id/reto_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nueva:\nPechurina con papa"
+                android:textSize="18sp"
+                android:paddingTop="14dp"
+                android:paddingBottom="20dp"
+                android:gravity="left"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/svg_crockpot_unlit"
+                android:layout_below="@id/reto_text2"
+                android:layout_alignParentLeft="true"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/svg_chat"
+                android:layout_below="@id/reto_text2"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
