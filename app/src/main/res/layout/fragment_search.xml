@@ -62,12 +62,16 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/pfp_sample"/>
+                    android:src="@drawable/svg_personas"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Personas"/>
+                    android:text="Personas"
+                    android:textColor="@color/black"
+                    android:alpha="0.4"
+                    android:textSize="16sp"
+                    android:paddingTop="4dp"/>
 
             </LinearLayout>
 
@@ -89,12 +93,16 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/pfp_sample"/>
+                    android:src="@drawable/svg_recetas"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recetas"/>
+                    android:text="Recetas"
+                    android:textColor="@color/black"
+                    android:alpha="0.4"
+                    android:textSize="16sp"
+                    android:paddingTop="4dp"/>
 
             </LinearLayout>
 
@@ -116,12 +124,16 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/pfp_sample"/>
+                    android:src="@drawable/svg_community_negro"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Comunidades"/>
+                    android:text="Comunidades"
+                    android:textColor="@color/black"
+                    android:alpha="0.4"
+                    android:textSize="16sp"
+                    android:paddingTop="4dp"/>
 
             </LinearLayout>
 
@@ -143,12 +155,16 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/pfp_sample"/>
+                    android:src="@drawable/svg_ingredientes"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ingredientes (no se muy bien que poner aqui)"/>
+                    android:text="Ingredientes"
+                    android:textColor="@color/black"
+                    android:alpha="0.4"
+                    android:textSize="16sp"
+                    android:paddingTop="4dp"/>
 
             </LinearLayout>
 

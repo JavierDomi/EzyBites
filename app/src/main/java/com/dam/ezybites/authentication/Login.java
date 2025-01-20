@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean shouldForceLogin() {
-        return prefs.getBoolean(PREF_FORCE_LOGIN, true);
+        return prefs.getBoolean(PREF_FORCE_LOGIN, false);
     }
 
     public void toggleForceLogin(boolean force) {

@@ -152,7 +152,7 @@
             <TextView android:id="@+id/reto_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5$ to 2 MEALS"
+                android:text="5$ into 2 MEALS"
                 android:textSize="18sp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
