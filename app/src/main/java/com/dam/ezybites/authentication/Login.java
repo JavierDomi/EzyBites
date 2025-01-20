@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.UnderlineSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -56,6 +58,8 @@ public class Login extends AppCompatActivity {
         progBar = findViewById(R.id.progressBar);
         tvNewAccount = findViewById(R.id.tvNewAccount);
 
+
+
         etPassword.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 loginUser();
@@ -71,10 +75,14 @@ public class Login extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+
+        SpannableString content = new SpannableString("Regístrate");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        tvNewAccount.setText(content);
     }
 
     private boolean shouldForceLogin() {
-        return prefs.getBoolean(PREF_FORCE_LOGIN, false);
+        return prefs.getBoolean(PREF_FORCE_LOGIN, true);
     }
 
     public void toggleForceLogin(boolean force) {

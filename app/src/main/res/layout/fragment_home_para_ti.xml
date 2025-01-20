@@ -24,6 +24,13 @@
                 android:layout_height="225dp"
                 android:layout_marginVertical="30dp"
                 app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/banner"/>
+
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -32,11 +39,13 @@
                 android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/white"
                 android:layout_marginBottom="10dp"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_amigos"
                 android:layout_width="wrap_content"
@@ -44,6 +53,7 @@
                 android:orientation="horizontal"
                 android:scrollbars="horizontal"
                 android:background="@color/white"/>
+
         </LinearLayout>
 
     </ScrollView>
