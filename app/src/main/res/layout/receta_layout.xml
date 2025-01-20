@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        el linear tiene que tener la height del root pero creo que solo se puede hacer dsd el java-->
+        <!--        el linear tiene que tener la height del root pero creo que solo se puede hacer dsd el java-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,9 +100,20 @@
 
         </LinearLayout>
 
-
-
-
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_guardar_receta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar Receta"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:enabled="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
