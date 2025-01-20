@@ -43,7 +43,7 @@ public class CGPTQuery {
                 body.put("model", "gpt-3.5-turbo");
                 body.put("messages", new JSONArray()
                         .put(new JSONObject().put("role", "system").put("content",
-                                "Escoje el id de las recetas que concuerden con los parámetros dados. Devuélvelos separados por comas." +
+                                "Escoge el id de las recetas que concuerden con los parámetros dados. Devuélvelos separados por comas." +
                                         "Usa los parametros como referencia. Devuelve siempre alguna receta lo más cercana posible a la búsqueda," +
                                         "pero no devuelvas más de 5 recetas." +
                                         "Es muy importante que devuelvas solo los ids separados por comas. E; id_1,id_2,id_3"))
