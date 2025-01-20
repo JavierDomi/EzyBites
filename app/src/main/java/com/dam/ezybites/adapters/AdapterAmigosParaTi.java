@@ -42,7 +42,7 @@ public class AdapterAmigosParaTi extends RecyclerView.Adapter<AdapterAmigosParaT
         holder.texto.setText(recetaConAutor.getUsername()); // Mostrar autor
         //holder.texto.setText(recetaConAutor.getReceta().getNombre()); Mostrar el nombre de la receta
         Glide.with(context).load(recetaConAutor.getUrlFotoPerfilAutor()).into(holder.pfp);
-        Log.e("Glide", "Url: " + recetaConAutor.getReceta().getUrl_foto());
+        Log.d("Glide", "Url: " + recetaConAutor.getReceta().getUrl_foto());
 
         switch(recetaConAutor.getReceta().getTipo()) {
             case 1:

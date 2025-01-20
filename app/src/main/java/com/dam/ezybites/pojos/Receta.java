@@ -38,6 +38,24 @@ public class Receta {
         this.visible = visible;
     }
 
+    public Receta(String id, String autor, String dificultad, String duracion, List<String> ingredientes,
+                  String nombre, String pasos, double rating, List<String> referencias,
+                  List<String> tags, int tipo, String url_foto, int visible) {
+        this.id = id;
+        this.autor = autor;
+        this.dificultad = dificultad;
+        this.duracion = duracion;
+        this.ingredientes = ingredientes;
+        this.nombre = nombre;
+        this.pasos = pasos;
+        this.rating = rating;
+        this.referencias = referencias;
+        this.tags = tags;
+        this.tipo = tipo;
+        this.url_foto = url_foto;
+        this.visible = visible;
+    }
+
     public Receta(String id, String url_foto, String autor , short tipo) {
         this.id = id;
         this.url_foto = url_foto;

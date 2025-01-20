@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/foto_receta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/fade_black_transparent"
+                android:paddingTop="64dp"
+                android:paddingBottom="8dp"
+                android:paddingHorizontal="12dp">
+
+                <LinearLayout
+                    android:id="@+id/resumen_receta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="fill_horizontal">
+
+                    <TextView
+                        android:id="@+id/duracion_receta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/artifakt_element_bold"
+                        android:textSize="14sp"
+                        android:paddingRight="8dp"
+                        android:textColor="@android:color/white"/>
+
+                    <TextView
+                        android:id="@+id/tipo_receta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/artifakt_element_bold"
+                        android:textSize="14sp"
+                        android:paddingHorizontal="8dp"
+                        android:textColor="@android:color/white"/>
+
+                    <TextView
+                        android:id="@+id/tags_receta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/artifakt_element_bold"
+                        android:textSize="14sp"
+                        android:paddingHorizontal="8dp"
+                        android:textColor="@android:color/white"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/titulo_receta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:textColor="@android:color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/autor_receta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/artifakt_element_bold"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@android:color/white"/>
+
+                    <ImageView
+                        android:id="@+id/foto_de_perfil_receta"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/circle_bg"
+                        android:clipToOutline="true"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

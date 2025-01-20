@@ -25,7 +25,10 @@
             android:id="@+id/spinner_feelings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:theme="@style/SpinnerStyle"
+            android:popupBackground="@color/black"/>
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,6 +96,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_recipes"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
