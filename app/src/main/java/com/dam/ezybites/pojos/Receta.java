@@ -1,8 +1,11 @@
 package com.dam.ezybites.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Receta {
+public class Receta implements Parcelable {
 
     private String autor;
     private String id;
@@ -62,6 +65,56 @@ public class Receta {
         this.autor = autor;
         this.tipo = tipo;
     }
+
+    protected Receta(Parcel in) {
+        autor = in.readString();
+        id = in.readString();
+        dificultad = in.readString();
+        duracion = in.readString();
+        ingredientes = in.createStringArrayList();
+        nombre = in.readString();
+        pasos = in.readString();
+        rating = in.readDouble();
+        referencias = in.createStringArrayList();
+        tags = in.createStringArrayList();
+        tipo = in.readInt();
+        url_foto = in.readString();
+        visible = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(autor);
+        dest.writeString(id);
+        dest.writeString(dificultad);
+        dest.writeString(duracion);
+        dest.writeStringList(ingredientes);
+        dest.writeString(nombre);
+        dest.writeString(pasos);
+        dest.writeDouble(rating);
+        dest.writeStringList(referencias);
+        dest.writeStringList(tags);
+        dest.writeInt(tipo);
+        dest.writeString(url_foto);
+        dest.writeInt(visible);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Receta> CREATOR = new Creator<Receta>() {
+        @Override
+        public Receta createFromParcel(Parcel in) {
+            return new Receta(in);
+        }
+
+        @Override
+        public Receta[] newArray(int size) {
+            return new Receta[size];
+        }
+    };
 
     // Getters and setters
     public String getId() {

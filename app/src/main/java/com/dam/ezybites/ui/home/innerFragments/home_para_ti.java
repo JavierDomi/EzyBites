@@ -133,6 +133,7 @@ public class home_para_ti extends Fragment {
             public void onDataChange(@NonNull DataSnapshot recetaSnapshot) {
                 if (recetaSnapshot.exists()) {
                     Receta receta = recetaSnapshot.getValue(Receta.class);
+                    receta.setId(recetaId);
                     if (receta != null) {
                         autorRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
