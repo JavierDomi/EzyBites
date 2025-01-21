@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp">
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,7 +86,6 @@
             android:orientation="horizontal"
             android:layout_marginTop="16dp">
 
-            <!-- Solo yo button -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,11 +96,20 @@
                     android:layout_height="60dp"
                     app:cardCornerRadius="30dp">
 
-                    <ImageView android:id="@+id/soloYo"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/btn_solo_yo"
-                        android:scaleType="centerCrop"/>
+                        android:layout_margin="2dp"
+                        app:cardCornerRadius="30dp"
+                        app:cardBackgroundColor="@color/black">
+
+                        <ImageView android:id="@+id/soloYo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/btn_solo_yo"
+                            android:scaleType="centerCrop"/>
+
+                    </androidx.cardview.widget.CardView>
 
                 </androidx.cardview.widget.CardView>
 
@@ -114,7 +121,6 @@
 
             </LinearLayout>
 
-            <!-- En familia button -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,11 +132,20 @@
                     android:layout_height="60dp"
                     app:cardCornerRadius="30dp">
 
-                    <ImageView android:id="@+id/comidaFamiliar"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/btn_comida_familiar"
-                        android:scaleType="centerCrop"/>
+                        android:layout_margin="2dp"
+                        app:cardCornerRadius="30dp"
+                        app:cardBackgroundColor="@color/black">
+
+                        <ImageView android:id="@+id/comidaFamiliar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/btn_comida_familiar"
+                            android:scaleType="centerCrop"/>
+
+                    </androidx.cardview.widget.CardView>
 
                 </androidx.cardview.widget.CardView>
 
@@ -142,7 +157,6 @@
 
             </LinearLayout>
 
-            <!-- Evento button -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,11 +168,20 @@
                     android:layout_height="60dp"
                     app:cardCornerRadius="30dp">
 
-                    <ImageView android:id="@+id/evento"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/btn_evento"
-                        android:scaleType="centerCrop"/>
+                        android:layout_margin="2dp"
+                        app:cardCornerRadius="30dp"
+                        app:cardBackgroundColor="@color/black">
+
+                        <ImageView android:id="@+id/evento"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/btn_evento"
+                            android:scaleType="centerCrop"/>
+
+                    </androidx.cardview.widget.CardView>
 
                 </androidx.cardview.widget.CardView>
 
@@ -191,7 +214,6 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="16dp">
 
-                <!-- Frío button -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,11 +224,20 @@
                         android:layout_height="60dp"
                         app:cardCornerRadius="30dp">
 
-                        <ImageView android:id="@+id/frio"
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/btn_frio"
-                            android:scaleType="centerCrop"/>
+                            android:layout_margin="2dp"
+                            app:cardCornerRadius="30dp"
+                            app:cardBackgroundColor="@color/black">
+
+                            <ImageView android:id="@+id/frio"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/btn_frio"
+                                android:scaleType="centerCrop"/>
+
+                        </androidx.cardview.widget.CardView>
 
                     </androidx.cardview.widget.CardView>
 
@@ -218,7 +249,6 @@
 
                 </LinearLayout>
 
-                <!-- Caliente button -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -230,11 +260,20 @@
                         android:layout_height="60dp"
                         app:cardCornerRadius="30dp">
 
-                        <ImageView android:id="@+id/caliente"
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/btn_caliente"
-                            android:scaleType="centerCrop"/>
+                            android:layout_margin="2dp"
+                            app:cardCornerRadius="30dp"
+                            app:cardBackgroundColor="@color/black">
+
+                            <ImageView android:id="@+id/caliente"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/btn_caliente"
+                                android:scaleType="centerCrop"/>
+
+                        </androidx.cardview.widget.CardView>
 
                     </androidx.cardview.widget.CardView>
 
@@ -246,7 +285,6 @@
 
                 </LinearLayout>
 
-                <!-- Ligero button -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -258,11 +296,20 @@
                         android:layout_height="60dp"
                         app:cardCornerRadius="30dp">
 
-                        <ImageView android:id="@+id/ligero"
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/btn_ligero"
-                            android:scaleType="centerCrop"/>
+                            android:layout_margin="2dp"
+                            app:cardCornerRadius="30dp"
+                            app:cardBackgroundColor="@color/black">
+
+                            <ImageView android:id="@+id/ligero"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/btn_ligero"
+                                android:scaleType="centerCrop"/>
+
+                        </androidx.cardview.widget.CardView>
 
                     </androidx.cardview.widget.CardView>
 
@@ -274,7 +321,6 @@
 
                 </LinearLayout>
 
-                <!-- Junk button -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -286,11 +332,20 @@
                         android:layout_height="60dp"
                         app:cardCornerRadius="30dp">
 
-                        <ImageView android:id="@+id/junk"
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/btn_junk"
-                            android:scaleType="centerCrop"/>
+                            android:layout_margin="2dp"
+                            app:cardCornerRadius="30dp"
+                            app:cardBackgroundColor="@color/black">
+
+                            <ImageView android:id="@+id/junk"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/btn_junk"
+                                android:scaleType="centerCrop"/>
+
+                        </androidx.cardview.widget.CardView>
 
                     </androidx.cardview.widget.CardView>
 
@@ -302,7 +357,6 @@
 
                 </LinearLayout>
 
-                <!-- Repostería button -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -314,11 +368,20 @@
                         android:layout_height="60dp"
                         app:cardCornerRadius="30dp">
 
-                        <ImageView android:id="@+id/reposteria"
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/btn_reposteria"
-                            android:scaleType="centerCrop"/>
+                            android:layout_margin="2dp"
+                            app:cardCornerRadius="30dp"
+                            app:cardBackgroundColor="@color/black">
+
+                            <ImageView android:id="@+id/reposteria"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/btn_reposteria"
+                                android:scaleType="centerCrop"/>
+
+                        </androidx.cardview.widget.CardView>
 
                     </androidx.cardview.widget.CardView>
 
