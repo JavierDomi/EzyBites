@@ -3,8 +3,10 @@ package com.dam.ezybites;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.dam.ezybites.R;
 import com.dam.ezybites.pojos.Receta;
 import com.dam.ezybites.pojos.RecetaConAutor;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,13 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
 public class RecetaDetalleActivity extends AppCompatActivity {
 
     private ImageView fotoReceta, fotoPerfilAutor;
-    private TextView tituloReceta, duracionReceta, tipoReceta, procedenciaReceta, autorReceta;
+    private TextView tituloReceta, duracionReceta, tipoReceta, autorReceta, ingredientesReceta, pasosReceta;
     private Button btnGuardarReceta;
+    private Spinner tagsSpinner;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String recetaId;
@@ -37,7 +37,7 @@ public class RecetaDetalleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.receta_layout);
+        setContentView(R.layout.receta_completa);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -61,10 +61,12 @@ public class RecetaDetalleActivity extends AppCompatActivity {
         tituloReceta = findViewById(R.id.titulo_receta);
         duracionReceta = findViewById(R.id.duracion_receta);
         tipoReceta = findViewById(R.id.tipo_receta);
-        procedenciaReceta = findViewById(R.id.procedencia_receta);
         autorReceta = findViewById(R.id.autor_receta_detalle);
         fotoPerfilAutor = findViewById(R.id.foto_de_perfil_receta);
         btnGuardarReceta = findViewById(R.id.btn_guardar_receta);
+        ingredientesReceta = findViewById(R.id.ingredientes_receta_detalle);
+        pasosReceta = findViewById(R.id.pasos_receta);
+        tagsSpinner = findViewById(R.id.tags_spinner);
     }
 
     private void mostrarDatosReceta(RecetaConAutor recetaConAutor) {
@@ -73,36 +75,45 @@ public class RecetaDetalleActivity extends AppCompatActivity {
         Glide.with(this).load(receta.getUrl_foto()).into(fotoReceta);
         tituloReceta.setText(receta.getNombre());
         duracionReceta.setText(receta.getDuracion());
-
-        switch (receta.getTipo()) {
-            case 1:
-                tipoReceta.setText("Tipo 1");
-                break;
-            case 2:
-                tipoReceta.setText("Tipo 2");
-                break;
-            case 3:
-                tipoReceta.setText("Tipo 3");
-                break;
-            default:
-                tipoReceta.setText("/");
-        }
-
-        procedenciaReceta.setText(obtenerProcedencia(receta.getTags()));
-        autorReceta.setText("By " + findUserNamebyId(recetaConAutor.getReceta().getAutor()));
+        tipoReceta.setText(getTipoReceta(receta.getTipo()));
+        findUserNamebyId(recetaConAutor.getReceta().getAutor());
         Glide.with(this).load(recetaConAutor.getUrlFotoPerfilAutor()).into(fotoPerfilAutor);
+
+        StringBuilder ingredientesBuilder = new StringBuilder();
+        for (String ingrediente : receta.getIngredientes()) {
+            ingredientesBuilder.append("• ").append(ingrediente).append("\n");
+        }
+        ingredientesReceta.setText(ingredientesBuilder.toString());
+
+        pasosReceta.setText(receta.getPasos());
+
+        ArrayAdapter<String> tagsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, receta.getTags());
+        tagsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tagsSpinner.setAdapter(tagsAdapter);
     }
 
-    private String findUserNamebyId(String autor) {
-        final String[] username = {""};
+    private String getTipoReceta(int tipo) {
+        switch (tipo) {
+            case 1:
+                return "Vegano";
+            case 2:
+                return "Vegetariano";
+            case 3:
+                return "Con carne";
+            default:
+                return "No especificado";
+        }
+    }
+
+    private void findUserNamebyId(String autor) {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Usuarios").child(autor);
 
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    username[0] = dataSnapshot.child("username").getValue(String.class);
-                    autorReceta.setText("By " + username[0]);
+                    String username = dataSnapshot.child("username").getValue(String.class);
+                    autorReceta.setText("By " + username);
                 } else {
                     Log.e("RecetaDetalleActivity", "User not found for ID: " + autor);
                     autorReceta.setText("By Unknown");
@@ -115,19 +126,6 @@ public class RecetaDetalleActivity extends AppCompatActivity {
                 autorReceta.setText("By Unknown");
             }
         });
-
-        return username[0];
-    }
-
-
-    private String obtenerProcedencia(List<String> tags) {
-        for (String tag : tags) {
-            if (tag.equalsIgnoreCase("italiano") || tag.equalsIgnoreCase("mexicano") ||
-                    tag.equalsIgnoreCase("francés") || tag.equalsIgnoreCase("oriental")) {
-                return tag;
-            }
-        }
-        return "Internacional";
     }
 
     private void verificarRecetaGuardada(String recetaId) {

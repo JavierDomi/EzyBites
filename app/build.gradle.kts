@@ -55,6 +55,9 @@ dependencies {
     implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     implementation ("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
 
+    // Libreria iText para descarga de recetas en pdf
+    implementation ("com.itextpdf:itextg:5.5.10")
+
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/foto_receta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sample_receta2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="-1dp"
+                android:orientation="vertical"
+                android:background="@drawable/fade_black_transparent"
+                android:paddingTop="64dp"
+                android:paddingBottom="8dp"
+                android:paddingHorizontal="12dp">
+
+                <LinearLayout
+                    android:id="@+id/resumen_receta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="fill_horizontal">
+
+                    <TextView
+                        android:id="@+id/duracion_receta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/artifakt_element_bold"
+                        android:textSize="18sp"
+                        android:paddingRight="16dp"
+                        android:text="30 min"/>
+
+                    <TextView
+                        android:id="@+id/tipo_receta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/artifakt_element_bold"
+                        android:textSize="18sp"
+                        android:paddingHorizontal="16dp"
+                        android:text="Tipo"/>
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/titulo_receta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ejemplo título"
+                    android:textSize="42sp"
+                    android:fontFamily="@font/artifakt_element_bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/autor_receta_detalle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="By arguiñano"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/artifakt_element_bold"
+                        android:layout_gravity="center"/>
+
+                    <ImageView
+                        android:id="@+id/foto_de_perfil_receta"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="12dp"
+                        android:src="@drawable/arguinano_sample"
+                        android:background="@drawable/circle_bg"
+                        android:clipToOutline="true"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredientes"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/ingredientes_receta_detalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pasos"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/pasos_receta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tags"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/artifakt_element_bold"
+                    android:layout_marginTop="16dp"/>
+
+                <Spinner
+                    android:id="@+id/tags_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_guardar_receta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar Receta"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:enabled="false"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
