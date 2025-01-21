@@ -1,16 +1,15 @@
 package com.dam.ezybites.ui.discover;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +22,7 @@ import com.dam.ezybites.api.CGPTQuery;
 import com.dam.ezybites.api.FirebaseToJson;
 import com.dam.ezybites.adapters.RecetasAdapter;
 import com.dam.ezybites.pojos.Receta;
+import com.dam.ezybites.pojos.RecetaConAutor;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.ArrayList;
@@ -30,56 +30,56 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class DiscoverFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class DiscoverFragment extends Fragment {
 
-    private Spinner spinnerFeelings;
+    private EditText editTextFeelings;
     private EditText editTextIngredients;
     private SeekBar seekBarTime;
     private TextView textViewTime;
     private Button buttonSearch;
-    private Button buttonClear;
     private RecyclerView recyclerViewRecetas;
     private RecetasAdapter recetasAdapter;
+
+    private ImageView btnSoloYo, btnComidaFamiliar, btnEvento;
+    private ImageView btnFrio, btnCaliente, btnLigero, btnJunk, btnReposteria;
+    private boolean isSoloYoSelected, isComidaFamiliarSelected, isEventoSelected;
+    private boolean isFrioSelected, isCalienteSelected, isLigeroSelected, isJunkSelected, isReposteriaSelected;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
-        spinnerFeelings = view.findViewById(R.id.spinner_feelings);
-        editTextIngredients = view.findViewById(R.id.edit_text_ingredients);
-        seekBarTime = view.findViewById(R.id.seek_bar_time);
-        textViewTime = view.findViewById(R.id.text_view_time);
-        buttonSearch = view.findViewById(R.id.button_search);
-        buttonClear = view.findViewById(R.id.button_clear);
-        recyclerViewRecetas = view.findViewById(R.id.recycler_view_recipes);
-
-        populateFeelingsSpinner();
-        setupSeekBar();
-        setupSearchButton();
-        setupClearButton();
+        initializeViews(view);
+        setupViews();
         setupRecyclerView();
 
         return view;
     }
 
-    private void populateFeelingsSpinner() {
-        List<String> feelings = Arrays.asList(
-                "Feliz", "Triste", "Emocionado", "Cansado", "Estresado",
-                "Relajado", "Ansioso", "Motivado", "Aburrido", "Nostálgico",
-                "Inspirado", "Frustrado", "Agradecido", "Confundido", "Optimista",
-                "Pesimista", "Enérgico", "Perezoso", "Curioso", "Satisfecho",
-                "Decepcionado", "Orgulloso", "Culpable", "Esperanzado", "Asustado"
-        );
+    private void initializeViews(View view) {
+        editTextFeelings = view.findViewById(R.id.edit_text_feelings);
+        editTextIngredients = view.findViewById(R.id.edit_text_ingredients);
+        seekBarTime = view.findViewById(R.id.seek_bar_time);
+        textViewTime = view.findViewById(R.id.text_view_time);
+        buttonSearch = view.findViewById(R.id.button_search);
+        recyclerViewRecetas = view.findViewById(R.id.recycler_view_recipes);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(),
-                android.R.layout.simple_spinner_item,
-                feelings
-        );
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinnerFeelings.setAdapter(adapter);
-        spinnerFeelings.setOnItemSelectedListener(this);
+        btnSoloYo = view.findViewById(R.id.soloYo);
+        btnComidaFamiliar = view.findViewById(R.id.comidaFamiliar);
+        btnEvento = view.findViewById(R.id.evento);
+        btnFrio = view.findViewById(R.id.frio);
+        btnCaliente = view.findViewById(R.id.caliente);
+        btnLigero = view.findViewById(R.id.ligero);
+        btnJunk = view.findViewById(R.id.junk);
+        btnReposteria = view.findViewById(R.id.reposteria);
+    }
+
+    private void setupViews() {
+        editTextFeelings.setFilters(new InputFilter[] {new InputFilter.LengthFilter(30)});
+        setupSeekBar();
+        setupSearchButton();
+        setupButtons();
     }
 
     private void setupSeekBar() {
@@ -101,8 +101,30 @@ public class DiscoverFragment extends Fragment implements AdapterView.OnItemSele
         buttonSearch.setOnClickListener(v -> performSearch());
     }
 
-    private void setupClearButton() {
-        buttonClear.setOnClickListener(v -> clear());
+    private void setupButtons() {
+        setupButton(btnSoloYo, "Solo yo", R.drawable.btn_solo_yo, R.drawable.btn_solo_yo_negativo);
+        setupButton(btnComidaFamiliar, "En familia", R.drawable.btn_comida_familiar, R.drawable.btn_comida_familiar_negativo);
+        setupButton(btnEvento, "Evento", R.drawable.btn_evento, R.drawable.btn_evento_negativo);
+        setupButton(btnFrio, "Frío", R.drawable.btn_frio, R.drawable.btn_frio_negativo);
+        setupButton(btnCaliente, "Caliente", R.drawable.btn_caliente, R.drawable.btn_caliente_negativo);
+        setupButton(btnLigero, "Ligero", R.drawable.btn_ligero, R.drawable.btn_ligero_negativo);
+        setupButton(btnJunk, "Junk", R.drawable.btn_junk, R.drawable.btn_junk_negativo);
+        setupButton(btnReposteria, "Repostería", R.drawable.btn_reposteria, R.drawable.btn_reposteria_negativo);
+    }
+
+    private void setupButton(ImageView button, String tag, int normalDrawable, int selectedDrawable) {
+        button.setTag(tag);
+        button.setOnClickListener(v -> {
+            boolean isSelected = (boolean) v.getTag(R.id.btn_selected_key);
+            v.setTag(R.id.btn_selected_key, !isSelected);
+
+            // Cast the View to ImageView
+            ImageView imageView = (ImageView) v;
+
+            // Set the appropriate drawable based on selection state
+            imageView.setImageResource(!isSelected ? selectedDrawable : normalDrawable);
+        });
+        button.setTag(R.id.btn_selected_key, false);
     }
 
     private void setupRecyclerView() {
@@ -111,41 +133,36 @@ public class DiscoverFragment extends Fragment implements AdapterView.OnItemSele
         recyclerViewRecetas.setAdapter(recetasAdapter);
     }
 
-
     private void performSearch() {
-        String feeling = spinnerFeelings.getSelectedItem().toString();
+        String feelings = editTextFeelings.getText().toString();
         String ingredients = editTextIngredients.getText().toString();
-        if (ingredients.isEmpty() || ingredients.equals(""))
-            ingredients = "Todos los ingredientes";
-        final String finalIngredients = ingredients;
         int time = seekBarTime.getProgress();
+
+        List<String> selectedParams = new ArrayList<>();
+        addIfSelected(selectedParams, btnSoloYo, btnComidaFamiliar, btnEvento);
+        addIfSelected(selectedParams, btnFrio, btnCaliente, btnLigero, btnJunk, btnReposteria);
+
+        String params = String.format("Feeling: %s, Ingredients: %s, Time: %d minutes, Selected: %s",
+                feelings, ingredients.isEmpty() ? "Todos los ingredientes" : ingredients, time,
+                String.join(", ", selectedParams));
 
         new Thread(() -> {
             try {
                 JsonNode recetasNode = FirebaseToJson.getCleanedRecetasJson();
-                Log.d("DiscoveryFragment", "Contenido recetasNode: " + recetasNode);
                 if (recetasNode != null) {
                     String recetasJson = recetasNode.toString();
                     CGPTQuery cgptQuery = new CGPTQuery();
-                    String params = String.format("Feeling: %s, Ingredients: %s, Time: %d minutes", feeling, finalIngredients, time);
-
-                    Log.d("DiscoverFragment", "Iniciando búsqueda con parámetros: " + params);
 
                     cgptQuery.enviarConsultaChatGPT(recetasJson, params, new CGPTQuery.CGPTResponseCallback() {
                         @Override
                         public void onResponse(String response) {
                             getActivity().runOnUiThread(() -> {
-                                Log.d("DiscoverFragment", "Respuesta de ChatGPT: " + response);
-
                                 if (response.isEmpty()) {
                                     Toast.makeText(getContext(), "No se encontraron recetas", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 List<String> recetaIds = Arrays.asList(response.split(","));
-                                Log.d("DiscoverFragment", "IDs de recetas encontrados: " + recetaIds);
-
                                 List<Receta> resultados = buscarRecetasPorIds(recetasNode, recetaIds);
-                                Log.d("DiscoverFragment", "Número de recetas cargadas: " + resultados.size());
 
                                 if (resultados.isEmpty()) {
                                     Toast.makeText(getContext(), "No se encontraron recetas coincidentes", Toast.LENGTH_SHORT).show();
@@ -170,6 +187,14 @@ public class DiscoverFragment extends Fragment implements AdapterView.OnItemSele
                 getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show());
             }
         }).start();
+    }
+
+    private void addIfSelected(List<String> params, ImageView... buttons) {
+        for (ImageView button : buttons) {
+            if ((boolean) button.getTag(R.id.btn_selected_key)) {
+                params.add((String) button.getTag());
+            }
+        }
     }
 
     private List<Receta> buscarRecetasPorIds(JsonNode recetasNode, List<String> ids) {
@@ -198,7 +223,6 @@ public class DiscoverFragment extends Fragment implements AdapterView.OnItemSele
         return resultados;
     }
 
-
     private List<String> getListFromJsonNode(JsonNode node) {
         List<String> list = new ArrayList<>();
         if (node != null && node.isArray()) {
@@ -209,28 +233,14 @@ public class DiscoverFragment extends Fragment implements AdapterView.OnItemSele
         return list;
     }
 
-
     private void actualizarRecyclerView(List<Receta> recetas) {
-        recetasAdapter.setRecetas(recetas);
+        List<RecetaConAutor> recetasConAutor = new ArrayList<>();
+        for (Receta receta : recetas) {
+            recetasConAutor.add(new RecetaConAutor(receta, "", ""));
+        }
+        recetasAdapter.setRecetas(recetasConAutor);
         recetasAdapter.notifyDataSetChanged();
     }
 
-    private void clear() {
-        spinnerFeelings.setSelection(0);
-        editTextIngredients.setText("");
-        seekBarTime.setProgress(0);
-        textViewTime.setText("0 minutos");
-        recetasAdapter.setRecetas(new ArrayList<>());
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String selectedFeeling = parent.getItemAtPosition(position).toString();
-        Log.d("DiscoverFragment", "Sentimiento seleccionado: " + selectedFeeling);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Este método se llama si no se selecciona nada
-    }
 }
+
