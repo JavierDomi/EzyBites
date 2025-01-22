@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -41,7 +39,8 @@
                 android:layout_height="wrap_content"/>
 
             <View
-                android:layout_width="match_parent"                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:background="@color/white"
                 android:layout_marginBottom="10dp"/>
 
@@ -53,6 +52,48 @@
                     android:id="@+id/rv_amigos"
                     android:backgroundTint="@color/black"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:scrollbars="horizontal"
+                    android:background="@color/white"/>
+
+                <ImageView
+                    android:layout_width="6dp"
+                    android:layout_height="170dp"
+                    android:src="@drawable/fade_black_horizontal"/>
+
+                <ImageView
+                    android:layout_width="6dp"
+                    android:layout_height="170dp"
+                    android:src="@drawable/fade_black_horizontal"
+                    android:layout_gravity="end"
+                    android:rotation="180"/>
+
+            </FrameLayout>
+
+            <!-- Agregar el RecyclerView para los trending abajo -->
+            <TextView
+                android:text="Trending"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white"
+                android:layout_marginBottom="10dp"/>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_trending"
+                    android:backgroundTint="@color/black"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:scrollbars="horizontal"
