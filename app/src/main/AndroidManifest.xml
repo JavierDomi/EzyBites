@@ -14,24 +14,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EzyBites"
         tools:targetApi="31">
+
+        <!-- Splash Screen -->
         <activity
-            android:name=".authentication.NewAccount"
-            android:exported="false" />
-        <activity
-            android:name=".authentication.Login"
-            android:exported="true">
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Login Screen -->
+        <activity
+            android:name=".authentication.Login"
+            android:exported="true" />
+
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/app_name" />
+
+        <!-- Recipe Details Activity -->
         <activity
             android:name=".RecetaDetalleActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
-
 </manifest>

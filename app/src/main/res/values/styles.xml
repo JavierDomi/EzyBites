@@ -35,5 +35,8 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/mosaico</item>
+    </style>
 
 </resources>

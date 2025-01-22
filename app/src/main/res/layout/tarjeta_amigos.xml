@@ -61,8 +61,8 @@
                 android:id="@+id/tarjeta_amigos_pfp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="#00000000"
-                android:contentDescription="Foto de perfil"
+                android:background="@drawable/circle_bg"
+                android:clipToOutline="true"
                 android:scaleType="centerCrop" />
 
         </LinearLayout>
