@@ -3,13 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.innerFragments.home_amigos"
     android:background="@color/black"
     android:paddingHorizontal="38dp">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_fragment_amigos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:scaleX="3"
+            android:scaleY="3"/>
+
+    </FrameLayout>
+
+
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/pfp_sample"/>
+        android:layout_height="14dp"
+        android:background="@drawable/fade_black"/>
 
 </FrameLayout>
