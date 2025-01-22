@@ -1,20 +1,19 @@
 package com.dam.ezybites.ui.home.innerFragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.dam.ezybites.R;
-import com.dam.ezybites.adapters.AdapterAmigosParaTi;
+import com.dam.ezybites.adapters.AdapterHomeAmigos;
 import com.dam.ezybites.pojos.Receta;
 import com.dam.ezybites.pojos.RecetaConAutor;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,17 +30,13 @@ import java.util.List;
 public class home_amigos extends Fragment {
 
     private RecyclerView recyclerView;
-    private AdapterAmigosParaTi adapter;
+    private AdapterHomeAmigos adapter;
     private List<RecetaConAutor> recetasList;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
     public home_amigos() {
         // Required empty public constructor
-    }
-
-    public static home_para_ti newInstance() {
-        return new home_para_ti();
     }
 
     @Override
@@ -62,7 +57,7 @@ public class home_amigos extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         recetasList = new ArrayList<>();
-        adapter = new AdapterAmigosParaTi(getContext(), recetasList);
+        adapter = new AdapterHomeAmigos(getContext(), recetasList);
         recyclerView.setAdapter(adapter);
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -169,32 +164,6 @@ public class home_amigos extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("Firebase", "Error al cargar detalles de la receta: " + databaseError.getMessage());
-            }
-        });
-    }
-
-
-    private void cargarFotoPerfilAutor(Receta receta, String autorId) {
-        DatabaseReference autorRef = mDatabase.child("Usuarios").child(autorId);
-
-        autorRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String urlFotoPerfil = dataSnapshot.child("url_foto_perfil").getValue(String.class);
-                String username = dataSnapshot.child("username").getValue(String.class);
-
-                if (urlFotoPerfil != null && username != null) {
-                    RecetaConAutor recetaConAutor = new RecetaConAutor(receta, urlFotoPerfil, username);
-                    recetasList.add(recetaConAutor);
-                    adapter.notifyDataSetChanged();
-                } else {
-                    Log.e("Firebase", "Datos de autor incompletos para ID: " + autorId);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("Firebase", "Error al cargar datos del autor: " + databaseError.getMessage());
             }
         });
     }
